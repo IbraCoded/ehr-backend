@@ -1,0 +1,37 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info
+.coverage
+.tox/
+.mypy_cache/
+.pytest_cache/
+
+# Virtual environment
+venv/
+env/
+.venv/  # Some tools (like poetry) might create a .venv directory
+
+
+# Environment variables
+.env
+
+
+# IDE-specific files
+.vscode/
+
+
+# Django specific
+/media/            # User-uploaded files
+/static_collected/ # Collected static files for deployment (if not using whitenoise directly from settings.STATIC_ROOT)
+*.log
+*.sqlite3          # Default Django database file
+
+# Database dumps and backups
+*.sql
+
+# Build artifacts (if any)
+dist/
+build/
