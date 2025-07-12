@@ -122,7 +122,7 @@ SIMPLE_JWT = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django_tenants.postgresql_backend',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
@@ -155,7 +155,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 TENANT_MODEL = 'tenants.Tenant'
-TENANT_DOMAIN_MODEL = 'tenants.Tenant'
+TENANT_DOMAIN_MODEL = 'tenants.Domain'
 PUBLIC_SCHEMA_NAME = 'public'
 SHARED_APPS = [
     'django_tenants',

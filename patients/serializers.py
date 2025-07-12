@@ -1,11 +1,12 @@
-from rest_framework import viewsets
+from rest_framework import serializers
 from .models import Patient, PatientUser
-from .serializers import PatientSerializer, PatientUserSerializer
 
-class PatientViewSet(viewsets.ModelViewSet):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+class PatientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        fields = ['id', 'patient_id', 'first_name', 'last_name', 'date_of_birth', 'gender', 'created_at', 'updated_at']
 
-class PatientUserViewSet(viewsets.ModelViewSet):
-    queryset = PatientUser.objects.all()
-    serializer_class = PatientUserSerializer
+class PatientUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PatientUser
+        fields = ['id', 'patient_id', 'user', 'created_at', 'updated_at']
