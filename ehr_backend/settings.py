@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'patients',
     'records',
     'consents',
-    'accounts',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -161,7 +161,7 @@ SHARED_APPS = [
     'django_tenants',
     'tenants', 
     'consents', 
-    'accounts', 
+    'authentication', 
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
