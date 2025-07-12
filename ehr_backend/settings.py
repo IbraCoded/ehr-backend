@@ -48,14 +48,15 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     # 'mozilla_django_oidc',
-    'encrypted_model_fields'
+    'encrypted_model_fields',
     'patients',
     'records',
     'consents',
-    'auth',
+    'accounts',
 ]
 
 MIDDLEWARE = [
+    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,6 +131,10 @@ DATABASES = {
     }
 }
 
+DATABASE_ROUTERS = (
+    'django_tenants.routers.TenantSyncRouter',
+)
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -149,12 +154,33 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+TENANT_MODEL = 'tenants.Tenant'
+TENANT_DOMAIN_MODEL = 'tenants.Tenant'
+PUBLIC_SCHEMA_NAME = 'public'
+SHARED_APPS = [
+    'django_tenants',
+    'tenants', 
+    'consents', 
+    'accounts', 
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    ]
+
+TENANT_APPS = ['patients', 'records']
+
+INSTALLED_APPS = SHARED_APPS + TENANT_APPS
+
+FIELD_ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
